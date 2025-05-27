@@ -1,0 +1,4 @@
+.cipd/
+.vscode/
+build/
+deps/
