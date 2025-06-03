@@ -31,6 +31,7 @@ class FileWidget : public QFrame {
         bool getIsActive() const;
         QPushButton *closeButton;
         int getUniqueId() const;
+        QString getFileName() const;
     protected:
         void paintEvent(QPaintEvent *event);
         void mousePressEvent(QMouseEvent* event) override;

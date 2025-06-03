@@ -28,9 +28,8 @@ MidLayout::MidLayout(QWidget* parent) : MyLayout<QHBoxLayout>(parent), scrollAre
 
 void MidLayout::newDocumentCreated(QString filename)
 {
-    qDebug()<<"newDocumentCreated log";
-    uint64_t fileIndex = scrollArea->addFileCont(filename);
-    emit addDocumentAndTextEdit(fileIndex);
+    FileInfo fileInfo = scrollArea->addFileCont(filename);
+    emit addDocumentAndTextEdit(fileInfo);
 }
 
 void MidLayout::addArrows()

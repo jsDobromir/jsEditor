@@ -1,6 +1,5 @@
 #include <iostream>
 #include <QApplication>
-#include <libplatform/libplatform.h>
 #include "Window.h"
 #include "application/Application.h"
 #include "structure/top_layout/TopLayout.h"
@@ -11,12 +10,12 @@ using namespace std;
 
 int run(int argc, char* argv[]) {
     QApplication app(argc, argv);
-    Window win(nullptr, 800, 600);
-    Application coreApp(&win);
-    
     TopLayout *topLayout = new TopLayout();
     MidLayout *midLayout = new MidLayout();
     BottomLayout *bottomLayout = new BottomLayout();
+    
+    Window win(nullptr, 800, 600);
+    Application coreApp(&win, argc, argv);
     
     QObject::connect(topLayout, &TopLayout::newDocumentSignal, midLayout, &MidLayout::newDocumentCreated);
     QObject::connect(midLayout, &MidLayout::addDocumentAndTextEdit, &coreApp, &Application::addDocumentAndTextEditHandler);
@@ -27,7 +26,8 @@ int run(int argc, char* argv[]) {
     win.addChildLayout(topLayout, 3);
     win.addChildLayout(midLayout, 5);
     win.addChildLayout(bottomLayout, 50);
-    coreApp.setLayouts(topLayout, midLayout, bottomLayout);
+    win.showWindow();
+    coreApp.setLayouts(topLayout, midLayout, bottomLayout, argc, argv);
     
     app.exec();
     return 0;

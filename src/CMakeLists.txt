@@ -9,6 +9,12 @@
 # add_executable(bootstrap bootstrap.cpp)
 # target_link_libraries(bootstrap PRIVATE sut)
 
-# # Optional but good to link Qt directly to bootstrap too
-# target_link_libraries(bootstrap PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
-# target_link_libraries(bootstrap PRIVATE v8_monolith v8_libbase v8_libplatform dl)
+# target_link_libraries(bootstrap PRIVATE
+#     "${V8_ROOT}/out.gn/x64.release.sample/obj/v8_monolith.lib"
+#     kernel32.lib
+#     user32.lib
+#     advapi32.lib
+#     dbghelp.lib
+#     version.lib
+#     winmm.lib
+# )

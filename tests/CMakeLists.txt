@@ -1,4 +1,4 @@
-enable_testing()
+# enable_testing()
 # add_executable(test1 test_utils.cpp)
 # target_link_libraries(test1 PRIVATE sut Qt6::Widgets Qt6::Test)
 
@@ -27,7 +27,6 @@ enable_testing()
 # add_test(NAME test2 COMMAND test2)
 # add_test(NAME test_button COMMAND test_button)
 # add_test(NAME test_top_layout COMMAND test_top_layout)
-# add_test(NAME test_arrow_cont COMMAND test_arrow_cont)
 # add_test(NAME test_scroll_cont COMMAND test_scroll_cont)
 # add_test(NAME test_file_widget COMMAND test_file_widget)
 # add_test(NAME test_app_class COMMAND test_app_class)

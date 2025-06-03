@@ -4,11 +4,11 @@ Window::Window(QWidget* parent, int w, int h) : QWidget(parent), w(w), h(h), mai
 {
     this->resize(w, h);
     this->setWindowTitle(" ");
-    this->show();
     this->showMaximized();
     mainLayout->setContentsMargins(0, 0, 0, 0);
     mainLayout->setSpacing(0);
     this->setLayout(mainLayout);
+    // this->show();
 }
 
 int Window::getWidth() const {
@@ -30,6 +30,11 @@ void Window::mouseMoveEvent(QMouseEvent* event) {
 void Window::mouseReleaseEvent(QMouseEvent* event) {
 }
 void Window::paintEvent(QPaintEvent *event){
+}
+
+void Window::showWindow()
+{
+    this->show();
 }
 
 void Window::resizeEvent(QResizeEvent* event) {

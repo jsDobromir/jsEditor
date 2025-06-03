@@ -15,7 +15,7 @@ class TestApplication : public QObject {
     };
 
     void TestApplication::testAddDocumentAndTextEditHandler() {
-        Application *application = new Application();
+        Application *application = new Application(nullptr);
         BottomLayout *bottomLayout = new BottomLayout();
         TopLayout *topLayout = new TopLayout();
         const std::map<uint64_t, QPointer<QPlainTextEdit>>& textEditGlobalMap= application->getTextEditGlobalMap();

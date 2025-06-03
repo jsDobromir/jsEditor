@@ -21,7 +21,7 @@ class MidLayout : public MyLayout<QHBoxLayout> {
         Arrow *leftArrow;
         Arrow *rightArrow;
     signals:
-        void addDocumentAndTextEdit(uint64_t fileIndex);
+        void addDocumentAndTextEdit(FileInfo fileInfo);
         void removeDocumentAndTextEdit(uint64_t fileIndex, bool isActiveIndexClosed, bool isLastIndex);
         void widgedClickedMapSignalReThrow(uint64_t uniqueId);
 };

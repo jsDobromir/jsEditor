@@ -26,8 +26,8 @@ FileWidget::FileWidget(QString filename, int closeIndex, int itemWidth, int show
                 
     QVBoxLayout* labelLayout = new QVBoxLayout();
     labelLayout->setAlignment(Qt::AlignCenter);
-
-    QLabel* label = new QLabel(filename + QString::number(shownIndex), this);
+    this->filename = filename + QString::number(shownIndex);
+    QLabel* label = new QLabel(this->filename, this);
     label->setAlignment(Qt::AlignCenter);
     label->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     label->setStyleSheet("background: transparent");
@@ -89,4 +89,9 @@ void FileWidget::mousePressEvent(QMouseEvent* event)
         emit widgetClickedSignal(closeIndex, uniqueId);
     }
 
+}
+
+QString FileWidget::getFileName() const
+{
+    return this->filename;
 }

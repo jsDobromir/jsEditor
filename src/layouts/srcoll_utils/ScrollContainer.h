@@ -9,6 +9,12 @@
 #include <vector>
 #include <QTimer>
 
+struct FileInfo {
+    bool isFile;
+    uint64_t uniqueId;
+    QString fileName;
+};
+
 class ScrollContainer : public QWidget{ 
     Q_OBJECT
     public:
@@ -19,7 +25,7 @@ class ScrollContainer : public QWidget{
         };
         explicit ScrollContainer(QWidget* parent = nullptr);
         CustomScrollArea* getScrollArea();
-        uint64_t addFileCont(QString filename);
+        FileInfo addFileCont(QString filename);
         const std::vector<FileWidget*>& getFileWidgets() const;
         void updateVisibleItems();
         void updateVisibleItemsInArea();

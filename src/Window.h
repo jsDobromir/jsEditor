@@ -19,6 +19,7 @@ class Window : public QWidget {
         void setTextEditWidg(QTextEdit* textEditPtr);
         void setFocusTextEdit();
         QVBoxLayout* getLayout();
+        void showWindow();
     protected:
         void paintEvent(QPaintEvent *event) override;
         void mousePressEvent(QMouseEvent* event) override;

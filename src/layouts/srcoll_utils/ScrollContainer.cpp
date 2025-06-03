@@ -25,17 +25,11 @@ ScrollContainer::ScrollContainer(QWidget* parent) : QWidget(parent), scrollArea(
 
             int viewportWidth = scrollArea->viewport()->width();
             int accumulatedWidth = 0;
-
-            for (int i = fileWidgets.size() - 1; i >= 0; --i) {
-                FileWidget* widget = fileWidgets[i];
-                int widgetWidth = widget->width();
-
-                if (accumulatedWidth + widgetWidth <= viewportWidth) {
-                    widget->setVisible(true);
-                    accumulatedWidth += widgetWidth;
-                } else {
-                    widget->setVisible(false);
-                }
+            if (this->activeIndex == (fileWidgets.size() - 1) ){
+                updateVisibleItems();
+            }
+            else {
+                updateVisibleItemsInArea();
             }
 
     });
@@ -45,7 +39,7 @@ CustomScrollArea* ScrollContainer::getScrollArea() {
     return this->scrollArea;
 }
 
-uint64_t ScrollContainer::addFileCont(QString filename)
+FileInfo ScrollContainer::addFileCont(QString filename)
 {   
     int itemIndex = fileWidgets.size();
     int itemMinWidth = 140;
@@ -60,12 +54,13 @@ uint64_t ScrollContainer::addFileCont(QString filename)
             fileWidgets[i]->setUnactive();
         }
     }
-
+    
     this->scrollFromArrow = false;
     this->activeIndex = fileWidgets.size()-1;
     QObject::connect(fileWidget, &FileWidget::closeButtonSignal, this, &ScrollContainer::closeButtonHandler);
     QObject::connect(fileWidget, &FileWidget::widgetClickedSignal, this, &ScrollContainer::widgetClickedHandler);
-    return fileWidget->getUniqueId();
+    FileInfo fileInfo(false, fileWidget->getUniqueId(), fileWidget->getFileName());
+    return fileInfo;
 }
 
 void ScrollContainer::closeButtonHandler(int closeIndex)
@@ -280,7 +275,8 @@ int ScrollContainer::getShownIndex()
 {
     if (indexMap.empty()) {
         indexMap[1] = true;
-        return (indexMap.end()->first);
+        auto it = std::prev(indexMap.end());
+        return (it->first);
     }
     for (const auto& [key, value] : indexMap) {
         if (value == false) {
@@ -289,7 +285,8 @@ int ScrollContainer::getShownIndex()
         }
     }
     indexMap[fileWidgets.size()+1] = true;
-    return (indexMap.end()->first);
+    auto it = std::prev(indexMap.end());
+    return (it->first);
 }
 
 int ScrollContainer::getActiveIndex() const

@@ -2,3 +2,6 @@
 .vscode/
 build/
 deps/
+CMakeLists.txt
+src/CMakeLists.txt
+tests/CMakeLists.txt
